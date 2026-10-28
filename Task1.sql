@@ -1,13 +1,13 @@
 use HRDatabase;
 go
 
-create table dbo.Departments (
+create table Departments (
     DepartmentID int primary key,
     DepartmentName varchar(50) not null unique
 );
 go
 
-create table dbo.Employees (
+create table Employees (
     EmployeeID int primary key,
     FullName varchar(100) not null,
     Email varchar(100) unique,
@@ -16,18 +16,14 @@ create table dbo.Employees (
 );
 go
 
-alter table dbo.Employees
-add PhoneNumber varchar(20);
+alter table dbo.Employees add PhoneNumber varchar(20);
 go
 
-drop table if exists dbo.TemporaryStaff;
+drop table TemporaryStaff;
 go
 
-insert into dbo.Departments (DepartmentID, DepartmentName)
-values
-(1, 'IT'),
-(2, 'HR'),
-(3, 'Finance');
+insert into Departments (DepartmentID, DepartmentName)
+values (1, 'IT'), (2, 'HR'), (3, 'Finance');
 
 insert into dbo.Employees
 (EmployeeID, FullName, Email, Salary, DepartmentID, PhoneNumber)
@@ -38,23 +34,18 @@ values
 (4, 'Mona Khaled', 'mona@techworld.com', 800.00, 3, '0794444444');
 go
 
-update dbo.Employees
-set Salary = 1350.00
-where EmployeeID = 1;
+update Employees set Salary = 1350.00 where EmployeeID = 1;
 
-delete from dbo.Employees
-where EmployeeID = 4;
+delete from Employees where EmployeeID = 4;
 
-select * from dbo.Employees;
+select * from Employees;
 
-select FullName, Salary from dbo.Employees;
+select FullName, Salary from Employees;
 
-select sum(Salary) as TotalSalaries from dbo.Employees;
+select sum(Salary) as TotalSalaries from Employees;
 
-select avg(Salary) as AverageSalary from dbo.Employees;
+select avg(Salary) as AverageSalary from Employees;
 
-select max(Salary) as HighestSalary,
-       min(Salary) as LowestSalary
-from dbo.Employees;
+select max(Salary) as HighestSalary min(Salary) as LowestSalary from Employees;
 
-select count(*) as TotalEmployees from dbo.Employees;
+select count(*) as TotalEmployees from Employees;
